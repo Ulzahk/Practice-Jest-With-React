@@ -3,17 +3,10 @@ const fruits = ["Manzana", "Banana", "Melon"];
 const reverseString = (string, callback) => {
   callback(string.split("").reverse().join(""));
 };
-const reverseString2 = (str) => {
-  return new Promise((resolve, reject) => {
-    if (!str) {
-      reject(Error("Error"));
-    }
-    resolve(str.split("").reverse().join(""));
-  });
-};
+const { reverseString2 } = require("../index");
 
-beforeEach(() => console.log("Before each test"));
-beforeAll(() => console.log("Before all tests"));
+// beforeEach(() => console.log("Before each test"));
+// beforeAll(() => console.log("Before all tests"));
 test("It should contain a text", () => {
   expect(text).toMatch(/World/);
 });
@@ -31,14 +24,22 @@ test("It should be a callback ", () => {
     expect(str).toBe("olleH");
   });
 });
-test("It should return a promise", () => {
-  return reverseString2("Hello").then((string) => {
+
+describe("Testing reverseString2 functionalities", () => {
+  test("It should return a promise", () => {
+    return reverseString2("Hello").then((string) => {
+      expect(string).toBe("olleH");
+    });
+  });
+  test("It should return an async/await result ", async () => {
+    const string = await reverseString2("Hello");
     expect(string).toBe("olleH");
   });
+  test("It should throw an Error with reject", async () => {
+    await expect(reverseString2()).rejects.toThrow({
+      message: "Error",
+    });
+  });
 });
-test("It should return an async/await result ", async () => {
-  const string = await reverseString2("Hello");
-  expect(string).toBe("olleH");
-});
-afterEach(() => console.log("After each test"));
-afterAll(() => console.log("After all tests"));
+// afterEach(() => console.log("After each test"));
+// afterAll(() => console.log("After all tests"));
