@@ -13,7 +13,7 @@ describe('<Product />', () => {
     );
     expect(product.length).toEqual(1);
   });
-  test('Test shop button', () => {
+  test('Check shop button', () => {
     const handleAddToCart = jest.fn();
     const wrapper = mount(
       <ProviderMock>
