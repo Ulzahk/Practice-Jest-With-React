@@ -4,7 +4,7 @@ import Footer from '../../components/Footer';
 
 describe('<Footer />', () => {
   const footer = mount(<Footer />);
-  test('Footer component render ', () => {
+  test('Footer component render', () => {
     expect(footer.length).toEqual(1);
   });
   test('Title render', () => {
